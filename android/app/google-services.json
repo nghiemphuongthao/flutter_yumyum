@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "679928856942",
+    "firebase_url": "https://yumyum-29026-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "yumyum-29026",
+    "storage_bucket": "yumyum-29026.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679928856942:android:541a19e407d71cf063417f",
+        "android_client_info": {
+          "package_name": "com.example.flutter_yumyum"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcwX3ULheUba6flmy60UVVEqB1in-4TFk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
