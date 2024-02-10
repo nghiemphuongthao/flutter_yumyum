@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_yumyum/screens/cart_screen.dart';
 import 'package:flutter_yumyum/screens/category.dart';
 import 'package:flutter_yumyum/screens/restaurant_home.dart';
 import 'package:flutter_yumyum/state/cart_state.dart';
@@ -84,4 +85,6 @@ class MenuViewModelImp implements MenuViewModel{
   }
   
   
+
+  void navigateCart() => Get.to(()=>CartDetailScreen());
 }

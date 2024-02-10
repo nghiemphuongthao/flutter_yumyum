@@ -97,6 +97,15 @@ class CartDetailScreen extends StatelessWidget{
             ),
           )),
           TotalWidget(controller: controller,),
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 8),
+            width: double.infinity,
+            child:
+              ElevatedButton(
+                  onPressed: ()=> cartViewModel.processCheckout(context,
+    controller.getCart(mainStateController.selectedRestaurant.value.restaurantId)),
+                  child:Text(checkOutText))
+          ),
         ],
       ))
           : Center(child: Text(cartEmptyText),),
