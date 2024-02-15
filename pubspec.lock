@@ -312,6 +312,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  form_validator:
+    dependency: "direct main"
+    description:
+      name: form_validator
+      sha256: "07961a78d6afd953d2df9e490e2ee5683f74b174b986620cdf6dbdaf81bdb16f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0-nullsafety.1"
   get:
     dependency: "direct main"
     description:
