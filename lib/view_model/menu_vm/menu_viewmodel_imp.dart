@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_yumyum/screens/cart_screen.dart';
 import 'package:flutter_yumyum/screens/category.dart';
+import 'package:flutter_yumyum/screens/order_history_screen.dart';
 import 'package:flutter_yumyum/screens/restaurant_home.dart';
 import 'package:flutter_yumyum/state/cart_state.dart';
 import 'package:flutter_yumyum/strings/main_strings.dart';
@@ -57,7 +58,7 @@ class MenuViewModelImp implements MenuViewModel{
 
     Get.defaultDialog(
       title: logoutTitle,
-      content: Text(logoutText),
+      content: Text(logoutMessageText),
       backgroundColor: Colors.white,
       cancel: ElevatedButton(onPressed: ()=>Get.back(), child: Text(cancelText)),
       confirm: ElevatedButton(onPressed: (){
@@ -87,4 +88,9 @@ class MenuViewModelImp implements MenuViewModel{
   
 
   void navigateCart() => Get.to(()=>CartDetailScreen());
+
+  @override
+  void viewOrderHistory(BuildContext context) {
+    Get.to(()=>OrderHistory());
+  }
 }
