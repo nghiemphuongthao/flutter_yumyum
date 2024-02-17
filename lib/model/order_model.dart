@@ -15,21 +15,21 @@ class OrderModel {
 
 
   OrderModel(
-      this.userId,
-      this.userName,
-      this.userPhone,
-      this.shippingAddress,
-      this.comment,
-      this.orderNumber,
-      this.restaurantId,
-      this.totalPayment,
-      this.finalPayment,
-      this.shippingCost,
-      this.discount,
-      this.isCod,
-      this.cartItemList,
-      this.orderStatus,
-      this.createdDate);
+      {required this.userId,
+      required this.userName,
+      required this.userPhone,
+      required this.shippingAddress,
+      required this.comment,
+      required this.orderNumber,
+      required this.restaurantId,
+      required this.totalPayment,
+      required this.finalPayment,
+      required this.shippingCost,
+      required this.discount,
+      required this.isCod,
+      required this.cartItemList,
+      required this.orderStatus,
+      required this.createdDate});
 
   OrderModel.fromJson(Map<String, dynamic> json){
     userId=json['userId'];
@@ -66,7 +66,7 @@ class OrderModel {
     data['discount']=this.discount;
     data['isCod']=this.isCod;
     data['orderStatus']=this.orderStatus;
-    data['cartItemList']=this.cartItemList;
+    data['cartItemList']=this.cartItemList.map((v)=>v.toJson()).toList();
     data['restaurantId']=this.restaurantId;
     return data;
   }

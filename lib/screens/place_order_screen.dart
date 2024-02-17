@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_yumyum/state/cart_state.dart';
+import 'package:flutter_yumyum/state/main_state.dart';
 import 'package:flutter_yumyum/state/place_order_state.dart';
 import 'package:flutter_yumyum/strings/place_order_string.dart';
 import 'package:flutter_yumyum/utils/const.dart';
+import 'package:flutter_yumyum/view_model/process_order/process_order_view_model_imp.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class PlaceOrderScreen extends StatelessWidget{
   final placeOrderState = Get.put(PlaceOrderController());
+  final placeOrderVM = new ProcessOrderViewModelImp();
+  final CartStateController cartStateController = Get.find();
+  final MainStateController mainStateController = Get.find();
 
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
@@ -110,9 +116,29 @@ class PlaceOrderScreen extends StatelessWidget{
                 width: double.infinity,
                 child: ElevatedButton(
                   child: Text(placeOrderText),
-                  onPressed: (){
+                  onPressed: () async{
                     if(formKey.currentState!.validate()){
-                      print('OK');
+                      var order = await placeOrderVM.createOrderModel(
+                        restaurantId: mainStateController.selectedRestaurant.value.restaurantId,
+                        address: addressController.text,
+                        cartStateController: cartStateController,
+                        comment: commentController.text,
+                        discount: 0,
+                        firstName: firstNameController.text,
+                        lastName: lastNameController.text,
+                        isCod: placeOrderState.paymentSelected.value==COD_VAL?true:false
+                      );
+                      //Try to print Order info
+                      print('HEHE: ${order.toJson()}');
+                      var result = await placeOrderVM.submitOrder(order);
+                      Get.defaultDialog(
+                        title: result ? orderSuccessText : orderFailText,
+                        middleText: result ? orderSuccessMessageText:orderFailMessageText,
+                        textCancel: cancelText,
+                        textConfirm: confirmText,
+                        confirmTextColor: Colors.yellow,
+                        onConfirm: ()=> print('Complete order')
+                      );
                     }
                   } ,),
               )
