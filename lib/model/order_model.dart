@@ -42,9 +42,10 @@ class OrderModel {
     totalPayment=double.parse(json['totalPayment'].toString());
     finalPayment=double.parse(json['finalPayment'].toString());
     shippingCost=double.parse(json['shippingCost'].toString());
-    discount=json['userId'];
-    isCod=json['userId'] as bool;
-    orderStatus=int.parse(json['orderStatus'].toString());
+    discount=double.parse(json['discount'].toString());
+    isCod=json['isCod'] as bool;
+    orderStatus = int.tryParse(json['orderStatus'].toString()) ?? 0;
+    createdDate = int.tryParse(json['createdDate'].toString()) ?? 0;
     if(json['cartItemList'] != null){
       json['cartItemList'].forEach((v){
         cartItemList.add(CartModel.fromJson(v));
@@ -68,6 +69,7 @@ class OrderModel {
     data['orderStatus']=this.orderStatus;
     data['cartItemList']=this.cartItemList.map((v)=>v.toJson()).toList();
     data['restaurantId']=this.restaurantId;
+    data['createdDate']=this.createdDate;
     return data;
   }
 }

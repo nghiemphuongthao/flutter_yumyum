@@ -4,8 +4,8 @@ import 'package:flutter_yumyum/view_model/order_history_vm/order_history_view_mo
 
 class OrderHistoryViewModelImp extends OrderHistoryViewModel{
   @override
-  Future<List<OrderModel>> getUserHistory(String restaurantId) {
-    return getUserOrdersByRestaurant(restaurantId);
+  Future<List<OrderModel>> getUserHistory(String restaurantId, String statusMode) {
+    return getUserOrdersByRestaurant(restaurantId, statusMode);
   }
   
 }

@@ -16,3 +16,11 @@ double calculateFinalPayment(double subTotal, double discount){
 int createOrderNumber(int original){
   return original + new Random().nextInt(1000);
 }
+
+String convertToDate(int date) => DateFormat('dd-MM-yyyy HH:mm')
+    .format(DateTime.fromMillisecondsSinceEpoch(date));
+
+String convertStatus(int status) => status==0 ? 'Placed'
+    : status==1 ? 'Shipping'
+    : status==2?'Shipped'
+    :'Cancelled';

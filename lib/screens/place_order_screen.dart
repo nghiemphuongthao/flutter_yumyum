@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_yumyum/screens/restaurant_home.dart';
 import 'package:flutter_yumyum/state/cart_state.dart';
 import 'package:flutter_yumyum/state/main_state.dart';
 import 'package:flutter_yumyum/state/place_order_state.dart';
@@ -136,8 +137,14 @@ class PlaceOrderScreen extends StatelessWidget{
                         middleText: result ? orderSuccessMessageText:orderFailMessageText,
                         textCancel: cancelText,
                         textConfirm: confirmText,
+                        cancel: Container(),
+                        onCancel: (){},
                         confirmTextColor: Colors.yellow,
-                        onConfirm: ()=> print('Complete order')
+                        onConfirm: (){
+                          cartStateController.clearCart(
+                              mainStateController.selectedRestaurant.value.restaurantId);
+                          Get.offAll(()=>RestaurantHome());
+                        }
                       );
                     }
                   } ,),

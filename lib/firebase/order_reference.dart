@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_yumyum/const/const.dart';
 import 'package:flutter_yumyum/model/order_model.dart';
+import 'package:flutter_yumyum/utils/const.dart';
 
 Future<bool> writeOrderToFirebase (OrderModel orderModel) async{
   try{
@@ -21,7 +22,8 @@ Future<bool> writeOrderToFirebase (OrderModel orderModel) async{
   }
 }
 
-Future<List<OrderModel>> getUserOrdersByRestaurant(String restaurantId) async{
+Future<List<OrderModel>> getUserOrdersByRestaurant(String restaurantId, String statusMode) async{
+  var orderStatusMode = statusMode ==ORDER_CANCELLED?-1:2;
   var userId= FirebaseAuth.instance.currentUser?.uid;
   var list = new List<OrderModel>.empty(growable: true);
   var source = await FirebaseDatabase.instance
@@ -36,5 +38,8 @@ Future<List<OrderModel>> getUserOrdersByRestaurant(String restaurantId) async{
   values.forEach((key, value) {
     list.add(OrderModel.fromJson(jsonDecode(jsonEncode(value))));
   });
-  return list;
+  return list.where((element) => statusMode==ORDER_PROCESSING
+      ? (element.orderStatus==0 || element.orderStatus==1)
+      :element.orderStatus==orderStatusMode)
+      .toList();
 }
