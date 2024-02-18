@@ -8,7 +8,6 @@ import 'package:flutter_yumyum/state/order_history_state.dart';
 import 'package:flutter_yumyum/utils/utils.dart';
 import 'package:flutter_yumyum/widgets/common/common_widgets.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderHistoryListWidget extends StatelessWidget{

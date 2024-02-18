@@ -1,6 +1,5 @@
 import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 final currencyFormat = NumberFormat.simpleCurrency();
@@ -24,3 +23,8 @@ String convertStatus(int status) => status==0 ? 'Placed'
     : status==1 ? 'Shipping'
     : status==2?'Shipped'
     :'Cancelled';
+
+MaterialColor convertStatusToColor(int orderStatus) =>
+    orderStatus==-1? Colors.red :
+        orderStatus==0? Colors.blue:
+            orderStatus==1 ? Colors.yellow : Colors.green;
