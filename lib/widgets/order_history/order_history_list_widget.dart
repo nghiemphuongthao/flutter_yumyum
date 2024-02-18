@@ -3,12 +3,17 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_yumyum/const/const.dart';
 import 'package:flutter_yumyum/model/order_model.dart';
+import 'package:flutter_yumyum/screens/order_view_detail_screen.dart';
+import 'package:flutter_yumyum/state/order_history_state.dart';
 import 'package:flutter_yumyum/utils/utils.dart';
 import 'package:flutter_yumyum/widgets/common/common_widgets.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class OrderHistoryListWidget extends StatelessWidget{
-  const OrderHistoryListWidget({Key? key, required this.listOrder}):super(key: key);
+  final orderDetailState=Get.put(OrderHistoryState());
+  OrderHistoryListWidget({Key? key, required this.listOrder}):super(key: key);
   final List<OrderModel> listOrder;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +26,10 @@ class OrderHistoryListWidget extends StatelessWidget{
           scrollDirection: Axis.vertical,
           itemCount: listOrder.length,
           itemBuilder: animationItemBuilder((index)=>InkWell(
-            onTap: (){},
+            onTap: (){
+              orderDetailState.selectedOrder.value=listOrder[index];
+              Get.to(()=>OrderViewDetailScreen());
+            },
             child: Card(
               semanticContainer: true,
               clipBehavior: Clip.antiAliasWithSaveLayer,
