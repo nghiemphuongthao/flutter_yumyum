@@ -23,7 +23,7 @@ Future<bool> checkIsUserInRestaurant(String userId, String restaurantId) async{
   return result.isActive && result.restaurant==restaurantId;
 }
 
-Future<bool> writeServerToFirebase (ServerUserModel serverUserModel) async{
+Future<bool> writeServerUserToFirebase (ServerUserModel serverUserModel) async{
   try{
     await FirebaseDatabase.instance
         .reference()
