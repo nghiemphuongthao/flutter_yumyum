@@ -9,4 +9,5 @@ abstract class MenuViewModel{
   void navigationHome(BuildContext context);
   void navigateCart();
   void viewOrderHistory(BuildContext context);
+  void managerRestaurant(BuildContext context);
 }

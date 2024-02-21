@@ -55,6 +55,15 @@ class MenuScreen extends StatelessWidget{
               :viewModel.login,),
         Divider(thickness: 1,),
         Spacer(),
+        Visibility(
+            visible: viewModel.checkLoginState(context),
+            child: Wrap(children: [
+              Divider(thickness: 1,),
+              MenuWidgetCallback(
+                icon: Icons.settings,
+                menuName: managerRestaurantText,
+                callback: viewModel.managerRestaurant),
+            ],)),
         Divider(thickness: 1,),
         MenuWidgetCallback(
           icon: viewModel.checkLoginState(context)? Icons.logout:Icons.login,

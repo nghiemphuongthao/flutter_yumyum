@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_yumyum/const/const.dart';
 import 'package:flutter_yumyum/model/cart_model.dart';
 import 'package:flutter_yumyum/model/food_model.dart';
 import 'package:flutter_yumyum/strings/cart_strings.dart';
-import 'package:flutter_yumyum/utils/const.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 

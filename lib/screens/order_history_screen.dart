@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_yumyum/const/const.dart';
 import 'package:flutter_yumyum/state/main_state.dart';
 import 'package:flutter_yumyum/strings/main_strings.dart';
-import 'package:flutter_yumyum/utils/const.dart';
 import 'package:flutter_yumyum/view_model/order_history_vm/order_history_view_model_imp.dart';
 import 'package:flutter_yumyum/widgets/order_history/order_history_widget.dart';
 import 'package:get/get.dart';

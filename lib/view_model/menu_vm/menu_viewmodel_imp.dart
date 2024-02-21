@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_yumyum/const/const.dart';
 import 'package:flutter_yumyum/screens/cart_screen.dart';
 import 'package:flutter_yumyum/screens/category.dart';
+import 'package:flutter_yumyum/screens/manager_restaurant_screen.dart';
 import 'package:flutter_yumyum/screens/order_history_screen.dart';
 import 'package:flutter_yumyum/screens/restaurant_home.dart';
 import 'package:flutter_yumyum/state/cart_state.dart';
 import 'package:flutter_yumyum/strings/main_strings.dart';
-import 'package:flutter_yumyum/utils/const.dart';
 import 'package:flutter_yumyum/view_model/menu_vm/menu_viewmodel.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -92,5 +93,10 @@ class MenuViewModelImp implements MenuViewModel{
   @override
   void viewOrderHistory(BuildContext context) {
     Get.to(()=>OrderHistory());
+  }
+
+  @override
+  void managerRestaurant(BuildContext context) {
+    Get.to(()=>ManagerRestaurantScreen());
   }
 }
