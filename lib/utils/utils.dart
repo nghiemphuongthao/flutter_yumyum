@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_yumyum/model/addon_model.dart';
 import 'package:intl/intl.dart';
 
 final currencyFormat = NumberFormat.simpleCurrency();
@@ -28,3 +29,9 @@ MaterialColor convertStatusToColor(int orderStatus) =>
     orderStatus==-1? Colors.red :
         orderStatus==0? Colors.blue:
             orderStatus==1 ? Colors.yellow : Colors.green;
+
+String convertAddonToText(List<AddonModel> addon) {
+  var result='';
+  addon.map((e) => result+='${e.name}');
+  return result.length>0?result.substring(0, result.length-1):result;
+}

@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_yumyum/model/addon_model.dart';
 import 'package:flutter_yumyum/state/order_history_state.dart';
 import 'package:flutter_yumyum/strings/cart_strings.dart';
 import 'package:flutter_yumyum/strings/order_history_string.dart';
@@ -24,7 +26,9 @@ class OrderViewDetailScreen extends StatelessWidget{
           (orderModel.orderStatus==0 || orderModel.orderStatus==1)
           ? InkWell(
             child: Icon(Icons.clear),
-            onTap: (){},
+            onTap: (){
+              print('Cancel Order');
+            },
           ) : Container()
         ],
       ),
@@ -117,11 +121,44 @@ class OrderViewDetailScreen extends StatelessWidget{
               ],
             ),
           )),
+          SizedBox(height: 10 ),
           Expanded(flex: 3,
-              child: Container(color: Colors.blue,)),
+              child: ListView.builder(
+                  itemCount: orderModel.cartItemList.length,
+                  itemBuilder: (context, index){
+                    var sizeText = orderModel.cartItemList[index]
+                      .size.length>0?orderModel.cartItemList[index].size[0].name
+                        :'';
+                    var addonText = orderModel.cartItemList[index]
+                        .addon.length>0?convertAddonToText(orderModel.cartItemList[index].addon)
+                        :'';
+                    var infoText='Quantity: ${orderModel.cartItemList[index].quantity}';
+                    if(sizeText.length>0)
+                      infoText+='\nSize: $sizeText';
+                    if(addonText.length>0)
+                      infoText+='\nAddon: $addonText';
+                    return Card(
+                      elevation: 8.0,
+                      child: ListTile(
+                        title: Text(orderModel.cartItemList[index].name),
+                        leading: CachedNetworkImage(
+                            imageUrl: orderModel.cartItemList[index].image,
+                            imageBuilder: (context, provider)=> CircleAvatar(
+                              backgroundImage: provider,
+                            ),
+                          placeholder: (context, url)=> Center(child: CircularProgressIndicator(),),
+                          errorWidget: (context, url, err)=> Center(child: Icon(Icons.image),),
+                        ),
+                        isThreeLine: true,
+                        subtitle: Text(''),
+                      ),
+                    );
+                  })),
         ],
       ),
     )
     );
   }
+
+
 }
