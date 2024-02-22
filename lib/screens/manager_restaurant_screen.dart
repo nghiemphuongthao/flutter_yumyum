@@ -9,6 +9,8 @@ import 'package:flutter_yumyum/strings/place_order_string.dart';
 import 'package:flutter_yumyum/strings/restaurant_home_strings.dart';
 import 'package:flutter_yumyum/view_model/manager_restaurant_vm/manager_restaurant_view_model.dart';
 import 'package:flutter_yumyum/view_model/manager_restaurant_vm/manager_restaurant_view_model_imp.dart';
+import 'package:flutter_yumyum/widgets/manager_restaurant/admin_card_item_widget.dart';
+import 'package:flutter_yumyum/widgets/manager_restaurant/admin_panel_item_widget.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:get/get.dart';
 
@@ -38,11 +40,48 @@ class ManagerRestaurantScreenState extends State<ManagerRestaurantScreen>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(child: Scaffold(
+      drawer: Drawer(child: Column(
+        children: [DrawerHeader(child: Center(
+          child: Icon(Icons.admin_panel_settings, size: 80,),
+        )),
+          Divider(thickness: 1,),
+          AdminPanelItemWidget(
+            icon: Icons.restaurant_menu,
+            text: categoriesText,
+            isExitWidget:false
+          ),
+          Divider(thickness: 1,),
+          AdminPanelItemWidget(
+              icon: Icons.list,
+              text: orderText,
+              isExitWidget:false
+          ),
+          Divider(thickness: 1,),
+          Spacer(),
+          AdminPanelItemWidget(
+              icon: Icons.exit_to_app,
+              text: exitText,
+              isExitWidget:true
+          ),
+        ],
+      ),),
       appBar: AppBar(title: Text(managerRestaurantText),),
-      body: Center(
-        child: Text('Is Server Login: ${serverManagerState.isServerLogin.value}'),),
-    );
+      body: Obx(()=>serverManagerState.isServerLogin.value
+          ? Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          AdminCardItemWidget(
+            icon: Icons.file_copy,
+            text: 'Order 100+',
+          ),
+          AdminCardItemWidget(
+            icon: Icons.money_outlined,
+            text: 'Total (\$3000)'
+          )
+        ],)
+          : Center(child: Text('$forbiddenText'),)),
+    ));
   }
 
   void showRegisterDialog() {
